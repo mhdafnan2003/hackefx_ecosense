@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackefx_ecosense/client/Screens/Home/widgets/radialGauge.dart';
+import 'package:hackefx_ecosense/client/Screens/Details/widgets/custom_guage.dart';
+import 'package:hackefx_ecosense/client/Screens/Details/widgets/gaugeSmallContainer.dart';
+import 'package:hackefx_ecosense/client/controllers/gaugeController.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
 class Enginedetails extends StatelessWidget {
   Enginedetails({super.key, required this.title, required this.subtitle});
   final ArduinoController controller = Get.put(ArduinoController());
+  final PageControlController pageCtrl = Get.put(PageControlController());
   final String title;
   final String subtitle;
   @override
@@ -40,12 +43,12 @@ class Enginedetails extends StatelessWidget {
 
         final tempValue =
             double.tryParse(sensorData['Temperature']?.toString() ?? '0') ?? 0;
-        // final humidityValue =
-        //     double.tryParse(sensorData['Humidity']?.toString() ?? '0') ?? 0;
+        final humidityValue =
+            double.tryParse(sensorData['Humidity']?.toString() ?? '0') ?? 0;
         // final smokeValue =
         //     double.tryParse(sensorData['SmokeValue']?.toString() ?? '0') ?? 0;
-        // final oilLevel =
-        //     double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
+        final oilLevel =
+            double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
         // final vibrationValue =
         //     double.tryParse(
         //       sensorData['VibrationValue']?.toString() ?? '0',
@@ -60,6 +63,8 @@ class Enginedetails extends StatelessWidget {
         //   Oil Level: $oilLevel units
         //   Vibration: $vibrationValue units
         // ''');
+
+      
 
         return Padding(
           padding: const EdgeInsets.all(20),
@@ -85,48 +90,52 @@ class Enginedetails extends StatelessWidget {
               SizedBox(height: 20),
               SizedBox(
                 height: 250,
-                width: double.infinity,
-                child: TemperatureGauge(temperature: tempValue),
+                child: PageView(
+                  controller: pageCtrl.pageController,
+                  onPageChanged: (index) => pageCtrl.currentPage.value = index,
+                  children: [
+                    Custom_gauge(Value: tempValue),
+                    Custom_gauge(Value: humidityValue),
+                    Custom_gauge(Value: oilLevel),
+                    Custom_gauge(Value: tempValue),
+                  ],
+                ),
               ),
               SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    Container(
-                      height: 70,
-                      width: size.width * .3,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(10, 49, 255, 162),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'Temperature',
+                      onpress: () {
+                        pageCtrl.changePage(0);
+                      },
                     ),
                     SizedBox(width: 15),
-                    Container(
-                      height: 70,
-                      width: size.width * .3,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(10, 49, 255, 162),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'Humidity',
+                      onpress: () {
+                        pageCtrl.changePage(1);
+                      },
                     ),
                     SizedBox(width: 15),
-                    Container(
-                      height: 70,
-                      width: size.width * .3,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(10, 49, 255, 162),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'Oil Level',
+                      onpress: () {
+                        pageCtrl.changePage(2);
+                      },
                     ),
                     SizedBox(width: 15),
-                    Container(
-                      height: 70,
-                      width: size.width * .3,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(10, 49, 255, 162),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'Temperature',
+                      onpress: () {
+                        pageCtrl.changePage(3);
+                      },
                     ),
                   ],
                 ),
@@ -147,3 +156,7 @@ class Enginedetails extends StatelessWidget {
     );
   }
 }
+
+
+
+

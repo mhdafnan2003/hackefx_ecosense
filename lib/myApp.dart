@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackefx_ecosense/client/Screens/Home/homeScreen.dart';
 import 'package:hackefx_ecosense/client/Screens/mainScreen.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 

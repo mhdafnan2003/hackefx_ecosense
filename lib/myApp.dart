@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackefx_ecosense/client/Screens/Home/homeScreen.dart';
 import 'package:hackefx_ecosense/client/Screens/mainScreen.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
@@ -8,7 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return GetMaterialApp(home: MainPage(),
+    debugShowCheckedModeBanner: false,
+    
     initialBinding: BindingsBuilder(() {
         Get.lazyPut(() => ArduinoController());
       }),);

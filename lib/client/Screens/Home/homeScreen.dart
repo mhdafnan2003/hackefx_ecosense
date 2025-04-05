@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackefx_ecosense/client/Screens/Home/widgets/radialGauge.dart';
+import 'package:hackefx_ecosense/client/Screens/Details/engineDetails.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
 class Homescreen extends StatelessWidget {
@@ -9,74 +9,146 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 28, 29, 33),
       body: SingleChildScrollView(
-        child: Obx(() {
-          if (controller.errorMessage.isNotEmpty) {
-            return Center(child: Text("Error: ${controller.errorMessage.value}"));
-          }
-        
-          // Safely parse all sensor values
-          final sensorData = controller.sensorData['data'] ?? {};
-          
-          final tempValue = double.tryParse(sensorData['Temperature']?.toString() ?? '0') ?? 0;
-          final humidityValue = double.tryParse(sensorData['Humidity']?.toString() ?? '0') ?? 0;
-          final smokeValue = double.tryParse(sensorData['SmokeValue']?.toString() ?? '0') ?? 0;
-          final oilLevel = double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
-          final vibrationValue = double.tryParse(sensorData['VibrationValue']?.toString() ?? '0') ?? 0;
-        
-          // For debugging - print all values
-          // debugPrint('''
-          //   Temperature: $tempValue°C
-          //   Humidity: $humidityValue%
-          //   Smoke: $smokeValue ppm
-          //   Oil Level: $oilLevel units
-          //   Vibration: $vibrationValue units
-          // ''');
-        
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(10, 49, 255, 162),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 180,
+                width: double.infinity,
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Sample Text',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Expanded(child: TemperatureGauge(temperature: tempValue)),
-                      Expanded(child: TemperatureGauge(temperature: tempValue)),
-                    ],
-                  )
-                  // TemperatureGauge(temperature: tempValue),
-                  // const SizedBox(height: 20),
-                  // // Display other sensor values
-                  // _buildSensorCard('Humidity', '$humidityValue%'),
-                  // _buildSensorCard('Smoke Level', '$smokeValue ppm'),
-                  // TemperatureGauge(temperature: smokeValue),
-                  // _buildSensorCard('Oil Level', '$oilLevel units'),
-                  // _buildSensorCard('Vibration', '$vibrationValue units'),
+                  Expanded(
+                    child: chechcontainer(
+                      size: size,
+                      heading: 'Engine',
+                      subheading: 'Check the details',
+                      onpress:
+                          () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder:
+                                  (ctx) =>
+                                      Enginedetails(title: 'Engine Details', subtitle: 'Sample Subtitle',),
+                            ),
+                          ),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Expanded(
+                    child: chechcontainer(
+                      size: size,
+                      heading: 'Ecu',
+                      subheading: 'Check the details',
+                      onpress: () {},
+                    ),
+                  ),
                 ],
               ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget _buildSensorCard(String label, String value) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(label, style: const TextStyle(fontSize: 18)),
-            Text(value, 
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ],
+              SizedBox(height: 15),
+              Row(
+                children: [
+                  Expanded(
+                    child: chechcontainer(
+                      size: size,
+                      heading: 'Cumbustion',
+                      subheading: 'Check the details',
+                      onpress: () {},
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Expanded(
+                    child: chechcontainer(
+                      size: size,
+                      heading: 'Mobility Health',
+                      subheading: 'Check the details',
+                      onpress: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+class chechcontainer extends StatelessWidget {
+  const chechcontainer({
+    super.key,
+    required this.size,
+    required this.heading,
+    required this.subheading,
+    required this.onpress,
+  });
+
+  final Size size;
+  final String heading;
+  final String subheading;
+  final GestureTapCallback onpress;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap: onpress,
+      child: Container(
+        height: 100,
+        width: size.width / 2,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(10, 49, 255, 162),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                heading,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                subheading,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w200,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+// 

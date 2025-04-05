@@ -11,14 +11,14 @@ class TemperatureGauge extends StatelessWidget {
     return SfRadialGauge(
       animationDuration: 2000,
       enableLoadingAnimation: true,
-      title: const GaugeTitle(
-        text: 'TEMPERATURE',
-        textStyle: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.black54,
-        ),
-      ),
+      // title: const GaugeTitle(
+      //   text: 'TEMPERATURE',
+      //   textStyle: TextStyle(
+      //     fontSize: 18,
+      //     fontWeight: FontWeight.bold,
+      //     color: Colors.black54,
+      //   ),
+      // ),
       axes: <RadialAxis>[
         RadialAxis(
           minimum: 0,
@@ -66,11 +66,11 @@ class TemperatureGauge extends StatelessWidget {
               needleLength: 0.7,
               knobStyle: const KnobStyle(
                 knobRadius: 0.08,
-                color: Colors.black,
+                color: Color.fromARGB(255, 255, 255, 255),
                 borderWidth: 0.05,
                 borderColor: Colors.white,
               ),
-              needleColor: Colors.black,
+              needleColor: const Color.fromARGB(255, 255, 255, 255),
               tailStyle: const TailStyle(
                 color: Colors.grey,
                 width: 5,
@@ -94,14 +94,16 @@ class TemperatureGauge extends StatelessWidget {
               widget: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  SizedBox(height: 30,),
                   Text(
                     '${temperature.toStringAsFixed(1)}°C',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2),
                   Text(
                     _getTemperatureStatus(temperature),
                     style: TextStyle(

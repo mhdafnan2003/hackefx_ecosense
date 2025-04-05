@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackefx_ecosense/client/Screens/Home/homeScreen.dart';
-import 'package:hackefx_ecosense/client/Screens/Search/searchScreen.dart';
+import 'package:hackefx_ecosense/client/Screens/Search/personalDetails.dart';
 import 'package:hackefx_ecosense/client/controllers/bottomNavigationController.dart';
 
 class MainPage extends StatelessWidget {
@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
 
   final List<Widget> pages = [
     Homescreen(),
-    Searchscreen(),
+    PersonalVehicleDetails(),
     
   ];
 
@@ -31,12 +31,12 @@ class MainPage extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 28, 29, 33),
         onTap: controller.changePage,
         currentIndex: controller.selectedIndex.value,
-        selectedItemColor: Colors.green,
+        selectedItemColor: const Color(0xFF17CF96),
         unselectedItemColor: Colors.grey,
 
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home,'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_4_outlined), label: 'Search'),
         ],
       ),)
     );

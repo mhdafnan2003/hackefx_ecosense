@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PageControlController extends GetxController {
-  final PageController pageController = PageController(initialPage: 1);
-  final RxInt currentPage = 1.obs;
+  final PageController pageController = PageController(initialPage: 0);
+  final RxInt currentPage = 0.obs;
 
   void changePage(int index) {
     pageController.animateToPage(

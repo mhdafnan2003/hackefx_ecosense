@@ -43,7 +43,7 @@ class ArduinoController extends GetxController {
     ).timeout(const Duration(seconds: 5));
 
    // debugPrint('🔵 Response status: ${response.statusCode}');
-   // debugPrint('📦 Response body: ${response.body}');
+    // debugPrint('📦 Response body: ${response.body}');
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);

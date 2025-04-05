@@ -16,9 +16,11 @@ class GaugeSmallContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onpress,
+      hoverColor: const Color.fromARGB(66, 23, 207, 149),
+      splashColor: const Color(0xFF17CF96),
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        height: 70,
+        height: 90,
         width: size.width * .35,
         decoration: BoxDecoration(
           color: const Color.fromARGB(10, 49, 255, 162),

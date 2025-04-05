@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackefx_ecosense/client/Screens/Details/comoustionDetails.dart';
 import 'package:hackefx_ecosense/client/Screens/Details/engineDetails.dart';
+import 'package:hackefx_ecosense/client/Screens/Details/mobilityDetails.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
 class Homescreen extends StatelessWidget {
@@ -72,7 +74,13 @@ class Homescreen extends StatelessWidget {
                       size: size,
                       heading: 'Cumbustion',
                       subheading: 'Check the details',
-                      onpress: () {},
+                      onpress: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder:
+                                  (ctx) =>
+                                      Comoustiondetails(title: 'Cumbustion Details', subtitle: 'Sample Subtitle',),
+                            ),
+                          ),
                     ),
                   ),
                   SizedBox(width: 15),
@@ -81,7 +89,13 @@ class Homescreen extends StatelessWidget {
                       size: size,
                       heading: 'Mobility Health',
                       subheading: 'Check the details',
-                      onpress: () {},
+                      onpress: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder:
+                                  (ctx) =>
+                                      Mobilitydetails(title: 'Mobility Details', subtitle: 'Sample Subtitle',),
+                            ),
+                          ),
                     ),
                   ),
                 ],
@@ -113,6 +127,8 @@ class chechcontainer extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: onpress,
+      hoverColor: const Color.fromARGB(66, 23, 207, 149),
+      splashColor: const Color(0xFF17CF96),
       child: Container(
         height: 100,
         width: size.width / 2,

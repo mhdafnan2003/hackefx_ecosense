@@ -5,8 +5,8 @@ import 'package:hackefx_ecosense/client/Screens/Details/widgets/gaugeSmallContai
 import 'package:hackefx_ecosense/client/controllers/gaugeController.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
-class Enginedetails extends StatelessWidget {
-  Enginedetails({super.key, required this.title, required this.subtitle});
+class Mobilitydetails extends StatelessWidget {
+  Mobilitydetails({super.key, required this.title, required this.subtitle});
   final ArduinoController controller = Get.put(ArduinoController());
   final PageControlController pageCtrl = Get.put(PageControlController());
   final String title;
@@ -41,19 +41,22 @@ class Enginedetails extends StatelessWidget {
         // Safely parse all sensor values
         final sensorData = controller.sensorData['data'] ?? {};
 
-        final tempValue =
-            double.tryParse(sensorData['Temperature']?.toString() ?? '0') ?? 0;
-        final humidityValue =
-            double.tryParse(sensorData['Humidity']?.toString() ?? '0') ?? 0;
-        // final smokeValue =
-        //     double.tryParse(sensorData['SmokeValue']?.toString() ?? '0') ?? 0;
-        final oilLevel =
-            double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
-        // final vibrationValue =
-        //     double.tryParse(
-        //       sensorData['VibrationValue']?.toString() ?? '0',
-        //     ) ??
-        //     0;
+        // final tempValue =
+        //     double.tryParse(sensorData['Temperature']?.toString() ?? '0') ?? 0;
+        // final humidityValue =
+        //     double.tryParse(sensorData['Humidity']?.toString() ?? '0') ?? 0;
+        //  final smokeValue =
+        //      double.tryParse(sensorData['SmokeValue']?.toString() ?? '0') ?? 0;
+        // final oilLevel =
+        //     double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
+        final vibrationValue =
+            double.tryParse(sensorData['VibrationValue']?.toString() ?? '0') ??
+            0;
+        final pressureValue =
+            double.tryParse(sensorData['pressure']?.toString() ?? '0') ?? 0;
+        final voltageValue =
+            double.tryParse(sensorData['voltage']?.toString() ?? '0') ?? 0;
+        
 
         // For debugging - print all values
         // debugPrint('''
@@ -63,8 +66,6 @@ class Enginedetails extends StatelessWidget {
         //   Oil Level: $oilLevel units
         //   Vibration: $vibrationValue units
         // ''');
-
-      
 
         return Padding(
           padding: const EdgeInsets.all(20),
@@ -94,11 +95,9 @@ class Enginedetails extends StatelessWidget {
                   controller: pageCtrl.pageController,
                   onPageChanged: (index) => pageCtrl.currentPage.value = index,
                   children: [
-                    Custom_temp_gauge(Value: tempValue),
-                    Custom_humidity_gauge(Value: humidityValue),
-                    Custom__oil_gauge(Value: oilLevel),
-                    Custom_temp_gauge(Value: tempValue),
-                   
+                    Custom__vibration_gauge(Value: vibrationValue),
+                    Custom_pressure_gauge(Value: pressureValue),
+                    Custom__voltage_gauge(Value: voltageValue),
                   ],
                 ),
               ),
@@ -109,33 +108,25 @@ class Enginedetails extends StatelessWidget {
                   children: [
                     GaugeSmallContainer(
                       size: size,
-                      title: 'Temperature',
+                      title: 'Vibration',
                       onpress: () {
                         pageCtrl.changePage(0);
                       },
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 15,),
                     GaugeSmallContainer(
                       size: size,
-                      title: 'Humidity',
+                      title: 'Pressure',
                       onpress: () {
                         pageCtrl.changePage(1);
                       },
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 15,),
                     GaugeSmallContainer(
                       size: size,
-                      title: 'Oil Level',
+                      title: 'Voltage',
                       onpress: () {
                         pageCtrl.changePage(2);
-                      },
-                    ),
-                    SizedBox(width: 15),
-                    GaugeSmallContainer(
-                      size: size,
-                      title: 'Temperature',
-                      onpress: () {
-                        pageCtrl.changePage(3);
                       },
                     ),
                   ],
@@ -157,7 +148,3 @@ class Enginedetails extends StatelessWidget {
     );
   }
 }
-
-
-
-

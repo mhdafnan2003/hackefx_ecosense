@@ -3,8 +3,8 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class TemperatureGauge extends StatelessWidget {
   final double temperature;
-  
-  const TemperatureGauge({super.key, required this.temperature});
+  final double intervel,maximum;
+  const TemperatureGauge({super.key, required this.temperature, required this.intervel, required this.maximum});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class TemperatureGauge extends StatelessWidget {
       axes: <RadialAxis>[
         RadialAxis(
           minimum: 0,
-          maximum: 100,
-          interval: 10,
+          maximum: maximum,
+          interval: intervel,
           radiusFactor: 0.9,
           axisLineStyle: const AxisLineStyle(
             thickness: 10,

@@ -1,6 +1,6 @@
 // ignore: camel_case_types
 import 'package:flutter/material.dart';
-import 'package:hackefx_ecosense/client/Screens/Home/widgets/radialGauge.dart';
+import 'package:hackefx_ecosense/client/Widgets/tempGauge.dart';
 
 // ignore: camel_case_types
 class Custom_gauge extends StatelessWidget {
@@ -15,7 +15,7 @@ class Custom_gauge extends StatelessWidget {
     return SizedBox(
       height: 250,
       width: double.infinity,
-      child: TemperatureGauge(temperature: Value),
+      child: TemperatureGauge(temperature: Value, intervel: 10, maximum: 100,),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackefx_ecosense/client/Screens/Home/widgets/radialGauge.dart';
+import 'package:hackefx_ecosense/client/Widgets/tempGauge.dart';
 import 'package:hackefx_ecosense/client/controllers/noderedAPIService.dart';
 
 class Ecudetails extends StatelessWidget {
@@ -64,7 +64,7 @@ class Ecudetails extends StatelessWidget {
                 Text('Sample Headline',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
                 Text('Sample Subheadline',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300),),
                 SizedBox(height: 20,),
-                SizedBox(height: 250,width: double.infinity, child: TemperatureGauge(temperature: tempValue)),
+                SizedBox(height: 250,width: double.infinity, child: TemperatureGauge(temperature: tempValue, intervel: 10, maximum: 100,)),
                 SizedBox(height: 20,),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,

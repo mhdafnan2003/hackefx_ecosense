@@ -127,9 +127,9 @@ class Oilgauge extends StatelessWidget {
   }
 
   String _getoilStatus(double temp) {
-    if (temp < 30) return 'COLD';
-    if (temp < 70) return 'NORMAL';
-    return 'HOT!';
+    if (temp < 30) return 'LOW';
+    if (temp < 70) return 'MEDIUM';
+    return 'HIGH!';
   }
 
   

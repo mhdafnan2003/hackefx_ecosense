@@ -55,6 +55,12 @@ class Comoustiondetails extends StatelessWidget {
         //     ) ??
         //     0;
 
+        // Add these values for the new gauges
+        final tempValue = 
+            double.tryParse(sensorData['Temperature']?.toString() ?? '0') ?? 0;
+        final oilLevel = 
+            double.tryParse(sensorData['OilLevel']?.toString() ?? '0') ?? 0;
+
         // For debugging - print all values
         // debugPrint('''
         //   Temperature: $tempValue°C
@@ -95,8 +101,8 @@ class Comoustiondetails extends StatelessWidget {
                   onPageChanged: (index) => pageCtrl.currentPage.value = index,
                   children: [
                     Custom__smoke_gauge(Value: smokeValue),
-                    
-                   
+                    Custom_temp_gauge(Value: tempValue),
+                    Custom__oil_gauge(Value: oilLevel),
                   ],
                 ),
               ),
@@ -112,8 +118,22 @@ class Comoustiondetails extends StatelessWidget {
                         pageCtrl.changePage(0);
                       },
                     ),
-                    
-                    
+                    SizedBox(width: 15),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'CO2',
+                      onpress: () {
+                        pageCtrl.changePage(1);
+                      },
+                    ),
+                    SizedBox(width: 15),
+                    GaugeSmallContainer(
+                      size: size,
+                      title: 'NO',
+                      onpress: () {
+                        pageCtrl.changePage(2);
+                      },
+                    ),
                   ],
                 ),
               ),

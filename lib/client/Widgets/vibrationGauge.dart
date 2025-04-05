@@ -127,9 +127,9 @@ class Vibrationgauge extends StatelessWidget {
   }
 
   String _getvibrationStatus(double temp) {
-    if (temp < 30) return 'COLD';
+    if (temp < 30) return 'LOW';
     if (temp < 70) return 'NORMAL';
-    return 'HOT!';
+    return 'HIGH!';
   }
 
   

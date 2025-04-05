@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PersonalVehicleDetails extends StatelessWidget {
   const PersonalVehicleDetails({super.key});
@@ -23,17 +22,17 @@ class PersonalVehicleDetails extends StatelessWidget {
             _buildDetailCard(
               icon: Icons.person,
               title: 'Name',
-              value: 'John Doe',
+              value: 'Amal',
             ),
             _buildDetailCard(
               icon: Icons.phone,
               title: 'Contact',
-              value: '+1 (555) 123-4567',
+              value: '+91 89439 41337',
             ),
             _buildDetailCard(
               icon: Icons.email,
               title: 'Email',
-              value: 'john.doe@example.com',
+              value: 'amal69@gmail.com',
             ),
             
             const SizedBox(height: 30),
@@ -53,7 +52,7 @@ class PersonalVehicleDetails extends StatelessWidget {
             _buildDetailCard(
               icon: Icons.confirmation_number,
               title: 'License Plate',
-              value: 'TESLA123',
+              value: 'KL 07 X 069',
             ),
             _buildDetailCard(
               icon: Icons.color_lens,
